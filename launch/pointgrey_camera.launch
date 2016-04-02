@@ -1,14 +1,18 @@
+<?xml version="1.0"?>
+
 <launch>
    <!-- Determine this using rosrun pointgrey_camera_driver list_cameras.
        If not specified, defaults to first camera found. -->
   <arg name="camera_serial" default="14366899" />
   <arg name="calibrated" default="1" />
+  <arg name="camera_name" default="" />
+  <arg name="nodelet_manager_name" default="camera_nodelet_manager" />
 
-  <group ns="camera">
-    <node pkg="nodelet" type="nodelet" name="camera_nodelet_manager" args="manager" />
+  <group ns="$(arg camera_name)_camera">
+    <node pkg="nodelet" type="nodelet" name="$(arg nodelet_manager_name)" args="manager" />
 
     <node pkg="nodelet" type="nodelet" name="camera_nodelet"
-          args="load pointgrey_camera_driver/PointGreyCameraNodelet camera_nodelet_manager" >
+          args="load pointgrey_camera_driver/PointGreyCameraNodelet $(arg nodelet_manager_name)" >
       <param name="frame_id" value="blackfly_optical" />
       <param name="serial" value="$(arg camera_serial)" />
 
@@ -32,8 +36,8 @@
    <!-- Color rectified image -->
    <node pkg="nodelet" type="nodelet" name="rectify_color"
    args="load image_proc/rectify camera_nodelet_manager">
-   <remap from="image_mono" to="image_color" />
-   <remap from="image_rect" to="image_rect_color" />
+     <remap from="image_mono" to="image_color" />
+     <remap from="image_rect" to="image_rect_color" />
    </node>
 
   </group>

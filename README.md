@@ -9,3 +9,6 @@ Camera configuration instructions
  - `SUBSYSTEM=="usb", ATTRS{idVendor}=="1e10", ATTRS{idProduct}=="3300", GROUP="plugdev", SYMLINK+="blackfly", MODE:="0666"`
 5. Restart: 
  - `sudo restart udev`
+6. Add grub rule to /etc/default/grub
+ - Find `GRUB_CMDLINE_LINUX_DEFAULT`
+ - Add `usbcore.usbfs_memory_mb=1000` to the list of commands

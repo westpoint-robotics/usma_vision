@@ -37,6 +37,6 @@
       <param name="io_method" value="mmap"/>
     </node>
 
-    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find aruco_ros)/launch/sample_aruco.rviz" />
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find usma_vision)/launch/sample_aruco.rviz" />
 
 </launch>
