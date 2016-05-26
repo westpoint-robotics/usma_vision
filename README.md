@@ -20,6 +20,8 @@ Camera configuration instructions
 Your package is now ready to be used!
 
 ###Single Pointgrey
+
+####Running Package
 1. Open `pointgrey_camera.launch` and verify the serial number is correctly set for the `camera_serial` argument.
  - You can find the serial number using the Pointgrey Flycapture2 software
 2. Run the launch file by typing `roslaunch usma_vision pointgrey_camera`
@@ -27,7 +29,36 @@ Your package is now ready to be used!
  - Use `rostopic list` to find the camera topic you want to view
  - Enter the topic in the image display settings so that it subscribes to the camera feed
 
+####Single Calibration
+1. Install the image_pipeline package using `sudo apt-get install ros-indigo-image-pipeline`
+2. Install the dependencies using `rosdep install --from-paths src --ignore-src --rosdistro=indigo -y`
+3. Follow the tutorial at the link below.
+ - `http://wiki.ros.org/camera_calibration/Tutorials/MonocularCalibration`
+ - Be sure to copy the calibration output from the terminal into a text file
+
 ###Dual Pointgrey
+
+####Running Package
 1. Open `dual_pointgrey_camera.launch` and verify the serial numbers are correct and are mapped to the right and left cameras from the perspective of the cameras.
 2. Launch the file by typing `roslaunch usma_vision dual_pointgrey_camera.launch` 
  - This will automatically bring up rviz with a display for each camera feed
+
+####Dual Calibration
+1. Follow the single calibration instructions above and calibrate each camera individually.
+2. Follow the tutorial at the link below.
+ - `http://wiki.ros.org/camera_calibration/Tutorials/StereoCalibration`
+ - The terminal command should look like this `rosrun camera_calibration cameracalibrator.py --size 8x6 --square 0.1055 right:=/stereo/right/image_raw left:=/stereo/left/image_raw right_camera:=/stereo/right left_camera:=/stereo/left --approximate=0.01`
+ - Approximate is necessary to allow for any slop due to the cameras not being synchronized
+ - Be sure to copy the calibration output from the terminal into a text file
+
+####Creating and Viewing Disparity Image and Pointcloud
+1. Start up roscore
+2. Launch the dual pointgrey package
+ - `roslaunch usma_vision dual_pointgrey_camera.launch`
+3. Start the stereo image processor from the image_pipeline package
+ - `ROS_NAMESPACE=stereo rosrun stereo_image_proc stereo_image_proc _approximate_sync:= true`
+ - `_approximate_sync` needs to be set because the cameras are not synchronized
+4. To view the the disparity image you need to run the image_view script
+ - `rosrun image_view stereo_view stereo:=stereo image:=image_rect`
+ - It will take a little bit for it to start up after the windows appear
+5. To view the pointcloud open Rviz and create a display for pointcloud2
