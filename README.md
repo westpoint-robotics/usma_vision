@@ -54,11 +54,8 @@ Your package is now ready to be used!
 ####Creating and Viewing Disparity Image and Pointcloud
 1. Start up roscore
 2. Launch the dual pointgrey package
- - `roslaunch usma_vision dual_pointgrey_camera.launch`
-3. Start the stereo image processor from the image_pipeline package
- - `ROS_NAMESPACE=stereo rosrun stereo_image_proc stereo_image_proc _approximate_sync:= true`
- - `_approximate_sync` needs to be set because the cameras are not synchronized
-4. To view the the disparity image you need to run the image_view script
+ - `roslaunch usma_vision start_everything.launch`
+3. To view the the disparity image you need to run the image_view script
  - `rosrun image_view stereo_view stereo:=stereo image:=image_rect`
  - It will take a little bit for it to start up after the windows appear
-5. To view the pointcloud open Rviz and create a display for pointcloud2
+4. To view the pointcloud open Rviz and create a display for pointcloud2
