@@ -5,13 +5,13 @@
  <!-- Launch PTU -->
   <include file="$(find usma_vision)/launch/pointgrey_camera.launch">
    <arg name="camera_serial" value="14366899" />
-   <arg name="camera_name" value="left" />
+   <arg name="camera_name" value="stereo/left" />
    <arg name="nodelet_manager_name" value="right_nodelet_manager" />
   </include>
 
   <include file="$(find usma_vision)/launch/pointgrey_camera.launch">
    <arg name="camera_serial" value="15384700" />
-   <arg name="camera_name" value="right" />
+   <arg name="camera_name" value="stereo/right" />
    <arg name="nodelet_manager_name" value="left_nodelet_manager" />
   </include>
 

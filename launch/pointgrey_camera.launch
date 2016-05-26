@@ -5,10 +5,10 @@
        If not specified, defaults to first camera found. -->
   <arg name="camera_serial" default="14366899" />
   <arg name="calibrated" default="1" />
-  <arg name="camera_name" default="" />
+  <arg name="camera_name" default="pointgrey" />
   <arg name="nodelet_manager_name" default="camera_nodelet_manager" />
 
-  <group ns="$(arg camera_name)_camera">
+  <group ns="$(arg camera_name)">
     <node pkg="nodelet" type="nodelet" name="$(arg nodelet_manager_name)" args="manager" />
 
     <node pkg="nodelet" type="nodelet" name="camera_nodelet"
