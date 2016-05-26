@@ -2,6 +2,7 @@
 Camera configuration instructions
 
 ## Pointgrey cameras
+
 ###Driver Installation
 1. Install [ROS pointgrey driver] (http://wiki.ros.org/pointgrey_camera_driver)
 2. The following udev rules instructions are taken from this [post] (http://answers.ros.org/question/48244/unable-to-get-point-grey-usb-camera-work-in-ubuntu/).
@@ -12,10 +13,12 @@ Camera configuration instructions
  - Get to the directory by typing `sudo nano /etc/default/grub`
  - Find `GRUB_CMDLINE_LINUX_DEFAULT`
  - Add `usbcore.usbfs_memory_mb=1000` to the list of commands
+
 ###Package Installation
 1. In the terminal type `git clone https://github.com/westpoint-robotics/usma_vision.git` to clone it into your /src directory.
 2. In your catkin workspace run `catkin_make`
 Your package is now ready to be used!
+
 ###Single Pointgrey
 1. Open `pointgrey_camera.launch` and verify the serial number is correctly set for the `camera_serial` argument.
  - You can find the serial number using the Pointgrey Flycapture2 software
@@ -23,6 +26,7 @@ Your package is now ready to be used!
 3. In order to see the camera feed open up rviz and add an image display.
  - Use `rostopic list` to find the camera topic you want to view
  - Enter the topic in the image display settings so that it subscribes to the camera feed
+
 ###Dual Pointgrey
 1. Open `dual_pointgrey_camera.launch` and verify the serial numbers are correct and are mapped to the right and left cameras from the perspective of the cameras.
 2. Launch the file by typing `roslaunch usma_vision dual_pointgrey_camera.launch` 
