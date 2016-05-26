@@ -23,7 +23,7 @@ Your package is now ready to be used!
 
 ####Running Package
 1. Open `pointgrey_camera.launch` and verify the serial number is correctly set for the `camera_serial` argument.
- - You can find the serial number using the Pointgrey Flycapture2 software
+ - You can find the serial number by running `rosrun pointgrey_camera_driver list_cameras`
 2. Run the launch file by typing `roslaunch usma_vision pointgrey_camera`
 3. In order to see the camera feed open up rviz and add an image display.
  - Use `rostopic list` to find the camera topic you want to view
