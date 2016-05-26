@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<launch>
+
+ <!-- Launch PTU -->
+  <include file="$(find usma_vision)/launch/dual_pointgrey_camera.launch">
+  </include>
+
+   <node ns="stereo" name="stereo_image_proc" pkg="stereo_image_proc" type="stereo_image_proc" respawn="true" args= "_approximate_sync:=true"/>
+
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find usma_vision)/launch/dual_pointgrey.rviz" />
+
+</launch>

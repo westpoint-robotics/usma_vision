@@ -15,6 +15,5 @@
    <arg name="nodelet_manager_name" value="left_nodelet_manager" />
   </include>
 
-    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find usma_vision)/launch/dual_pointgrey.rviz" />
 
 </launch>
